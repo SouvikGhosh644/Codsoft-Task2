@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Railway Reservation Booking Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #ccc;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    /* Style for suggestion div */
+    .suggestions {
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      /* width: 100%; */
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .suggestion-item {
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .suggestion-item:hover {
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <!-- <h2 style="justify-content: center; text-align: center;">Railway Reservation Booking Form</h2> -->
+    <form action="book-db.php" method="post">
+      <center><img src="azadi.png" alt="image not found"></center>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your name.." required>
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" placeholder="Your email.." required>
+
+      <label for="from">From:</label>
+      <input type="text" id="from" name="from" placeholder="Source station.." required>
+      <div id="fromSuggestions" class="suggestions"></div>
+
+      <label for="to">To:</label>
+      <input type="text" id="to" name="to" placeholder="Destination station.." required>
+      <div id="toSuggestions" class="suggestions"></div>
+
+      <label for="to">No Of Passenger:</label>
+      <input type="number" id="nop" name="nop" placeholder="Number of Passenger.." required>
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" placeholder="Select date.." required>
+
+      <center><input type="submit" value="Book Now" href="invoice.html"></center>
+    </form>
+  </div>
+
+
+  <script>
+    // Your existing JavaScript code here
+
+    const url = 'https://rstations.p.rapidapi.com/';
+    const apiKey = '4a8df4273dmsh36ddfac018f2e75p13a751jsn8a71a702d511';
+
+    const fromInput = document.getElementById('from');
+    const toInput = document.getElementById('to');
+    const fromSuggestionsDiv = document.getElementById('fromSuggestions'); // Corrected ID
+    const toSuggestionsDiv = document.getElementById('toSuggestions'); // Corrected ID
+
+    // Function to fetch and display station suggestions
+    async function fetchStationSuggestions(inputField, suggestionsDiv, keyword) {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Host': 'rstations.p.rapidapi.com'
+        },
+        body: JSON.stringify({ search: keyword })
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        // Display suggestions in the suggestions div
+        suggestionsDiv.innerHTML = result.map(station => `<p>${station[1]}</p>`).join('');
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    // Event listener for both source and destination input fields
+    fromInput.addEventListener('input', (event) => {
+      const keyword = event.target.value;
+      fetchStationSuggestions(fromInput, fromSuggestionsDiv, keyword);
+    });
+
+    toInput.addEventListener('input', (event) => {
+      const keyword = event.target.value;
+      fetchStationSuggestions(toInput, toSuggestionsDiv, keyword);
+    });
+
+    // Function to populate input field with selected suggestion
+    function selectSuggestion(inputField, suggestionsDiv, suggestion) {
+      inputField.value = suggestion;
+      suggestionsDiv.innerHTML = ''; // Clear suggestions after selection
+    }
+
+    // Event listener to handle suggestion selection for both 'from' and 'to' inputs
+    fromSuggestionsDiv.addEventListener('click', (event) => {
+      const selectedSuggestion = event.target.textContent;
+      selectSuggestion(fromInput, fromSuggestionsDiv, selectedSuggestion);
+    });
+
+    toSuggestionsDiv.addEventListener('click', (event) => {
+      const selectedSuggestion = event.target.textContent;
+      selectSuggestion(toInput, toSuggestionsDiv, selectedSuggestion);
+    });
+
+  </script>
+</body>
+
+</html>

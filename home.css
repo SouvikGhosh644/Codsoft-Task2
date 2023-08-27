@@ -1,0 +1,344 @@
+/* global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*header*/
+.header {
+  width: 100%;
+  height: auto;
+}
+
+nav {
+  display: flex;
+  background-color: rgb(66, 66, 193);
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  list-style: none;
+  margin: 0 23px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.title {
+  text-align: left;
+  align-items: left;
+  justify-content: space-around;
+  margin: 10px;
+  padding: 10px;
+  font-size: 22px;
+  color: white;
+
+}
+
+.menu {
+  display: flex;
+  text-align: right;
+  align-items: end;
+  margin: 10px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+/*header content*/
+.header_content {
+  background-image: url('IR.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: center;
+}
+
+.welcome {
+  color: white;
+  margin: 15px;
+  font-weight: bolder;
+}
+
+.welcome h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.welcome p {
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: white
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #0b728e;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* about section css */
+
+.about_section {
+  background-color: #fff;
+  padding: 60px;
+  text-align: center;
+}
+
+.about_container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 32px;
+  color: #333333;
+  margin-bottom: 30px;
+}
+
+p {
+  font-size: 18px;
+  color: #666666;
+  line-height: 1.6;
+}
+
+.feature_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.feature {
+  max-width: 350px;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: 1s;
+}
+
+.feature:hover {
+  transform: scale(1.1);
+}
+
+img {
+  width: 80px;
+  height: 80px;
+}
+
+h3 {
+  font-size: 24px;
+  color: #333333;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 16px;
+  color: #666666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .feature_container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .feature {
+    max-width: 100%;
+    margin: 10px;
+    padding: 10px;
+  }
+}
+
+
+/*contact form*/
+.contact_us {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.contact_heading {
+  text-align: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+form {
+  background-color: #f2f2f2;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* footer */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+
+/* media quarry */
+@media (max-width: 768px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul li {
+    margin: 10px;
+  }
+
+  .title {
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  .menu {
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .header_content {
+    height: auto;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .welcome h1 {
+    font-size: 36px;
+  }
+
+  .welcome p {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .about_section {
+    padding: 40px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .feature_container {
+    margin-top: 20px;
+  }
+
+  .feature {
+    max-width: 100%;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
+
+  h3 {
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+
+  .feature p {
+    font-size: 14px;
+  }
+
+  .contact_heading {
+    font-size: 24px;
+  }
+
+  form {
+    padding: 20px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    margin-bottom: 15px;
+  }
+
+  button[type="submit"] {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
